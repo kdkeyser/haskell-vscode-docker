@@ -17,11 +17,8 @@ RUN apt-get install -y --no-install-recommends \
       netbase \ 
       xz-utils \
       libz-dev \
-      haskell-stack
-
-ADD https://vscode-update.azurewebsites.net/1.10.2/linux-deb-x64/stable /tmp/vscode.deb
-
-RUN dpkg -i /tmp/vscode.deb && rm /tmp/vscode.deb
+      haskell-stack \
+      libtinfo-dev
 
 RUN adduser developer
 
@@ -31,7 +28,13 @@ RUN stack upgrade
 
 ENV PATH=/home/developer/.local/bin:$PATH
 
+USER root
+
+ADD https://vscode-update.azurewebsites.net/1.10.2/linux-deb-x64/stable /tmp/vscode.deb
+
+RUN dpkg -i /tmp/vscode.deb && rm /tmp/vscode.deb
+
+USER developer
+
 RUN echo 0 | code --install-extension Vans.haskero
-
-
 
