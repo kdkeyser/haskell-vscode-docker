@@ -8,7 +8,7 @@ services:
       - SSH_AUTH_SOCK=${SSH_AUTH_SOCK}
       - DISPLAY=${DISPLAY}
     volumes:
-      - ${HOME}/shared:/home/developer/shared
+      - ${HOME}/shared-haskell:/home/developer/shared
       - ${HOME}/.gitconfig:/home/developer/.gitconfig:ro
       - /tmp/.X11-unix:/tmp/.X11-unix:rw
       - ${HOME}/.Xauthority:/home/developer/.Xauthority
